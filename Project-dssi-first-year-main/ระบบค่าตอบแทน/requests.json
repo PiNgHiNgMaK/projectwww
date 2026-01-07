@@ -1,0 +1,131 @@
+[
+    {
+        "id": "REQ-20260107193109",
+        "applicant": "user01",
+        "applicant_name": "อาจารย์ สมชาย",
+        "applicant_info": {
+            "title_name": "นาย",
+            "academic_position": "อาจารย์",
+            "position_date": "01/01/2560",
+            "position_number": "12345",
+            "department": "วิทยาการคอมพิวเตอร์",
+            "faculty": "วิทยาศาสตร์"
+        },
+        "fiscal_year": "123311",
+        "works": [
+            {
+                "type": "research",
+                "details": {
+                    "contribution": "first",
+                    "database": "scopus_q1_q2",
+                    "date_accept": "1234",
+                    "date_publish": "123",
+                    "issue": "1234",
+                    "journal_name": "1234",
+                    "month": "1234",
+                    "title": "123",
+                    "vol": "1234",
+                    "year_pub": "1234",
+                    "chapter_details": "123",
+                    "format": "chapter",
+                    "publish_type": "inter"
+                }
+            },
+            {
+                "type": "textbook",
+                "details": {
+                    "chapter_details": "123",
+                    "contribution": "first",
+                    "date_publish": "123",
+                    "format": "chapter",
+                    "publish_type": "inter",
+                    "title": "123"
+                }
+            }
+        ],
+        "date": "07/01/2026 19:33",
+        "status": "อนุมัติ",
+        "score": 0,
+        "comment": "",
+        "timeline_status": "ontime",
+        "certify": true,
+        "approved_amount": "100000"
+    },
+    {
+        "id": "REQ-20260107194015",
+        "applicant": "user01",
+        "applicant_name": "อาจารย์ สมชาย",
+        "applicant_info": {
+            "title_name": "นาย",
+            "academic_position": "อาจารย์",
+            "position_date": "01/01/2560",
+            "position_number": "12345",
+            "department": "วิทยาการคอมพิวเตอร์",
+            "faculty": "วิทยาศาสตร์"
+        },
+        "fiscal_year": "12233",
+        "works": [
+            {
+                "type": "research",
+                "details": {
+                    "contribution": "first",
+                    "database": "scopus_q1_q2",
+                    "date_accept": "123",
+                    "date_publish": "123",
+                    "issue": "123",
+                    "journal_name": "123",
+                    "month": "123",
+                    "title": "123",
+                    "vol": "123",
+                    "year_pub": "123"
+                }
+            }
+        ],
+        "evidence_url": "https://docs.google.com/document/d/1UV23_iZ7DrqrRg4pzm6PDuM81t6Dir7292_s3Ugj2RQ/edit?tab=t.0",
+        "date": "07/01/2026 19:40",
+        "status": "อนุมัติ",
+        "score": 0,
+        "comment": "",
+        "timeline_status": "ontime",
+        "certify": true,
+        "approved_amount": "123412341234"
+    },
+    {
+        "id": "REQ-20260107205906",
+        "applicant": "user01",
+        "applicant_name": "อาจารย์ สมชาย",
+        "applicant_info": {
+            "title_name": "นาย",
+            "academic_position": "อาจารย์",
+            "position_date": "01/01/2560",
+            "position_number": "12345",
+            "department": "วิทยาการคอมพิวเตอร์",
+            "faculty": "วิทยาศาสตร์"
+        },
+        "fiscal_year": "1234",
+        "works": [
+            {
+                "type": "research",
+                "details": {
+                    "title": "123",
+                    "journal_name": "123",
+                    "vol": "123",
+                    "issue": "123",
+                    "month": "123",
+                    "year_pub": "123",
+                    "date_accept": "123",
+                    "date_publish": "123",
+                    "database": "scopus_q1_q2",
+                    "contribution": "first",
+                    "evidence_url": "https://drive.google.com/drive/u/0/folders/1YxNKAQPMkHFdp-6yeAfWDD493ME_CeAb"
+                }
+            }
+        ],
+        "date": "07/01/2026 20:59",
+        "status": "ผลงานซ้ำซ้อน",
+        "score": 0,
+        "comment": "ผลงานนี้เคยถูกใช้ขอค่าตอบแทนแล้ว",
+        "timeline_status": "ontime",
+        "certify": true
+    }
+]

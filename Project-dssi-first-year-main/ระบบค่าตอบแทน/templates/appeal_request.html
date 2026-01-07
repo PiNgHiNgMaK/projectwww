@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ยื่นอุทธรณ์ - {{ req.id }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-wrapper">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h3>Academic Sys</h3>
+                <p class="role-badge">{{ role.upper() }}</p>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="{{ url_for('dashboard') }}"><i class="fas fa-home"></i> หน้าหลัก</a>
+                
+                {% if role == 'applicant' %}
+                    <a href="{{ url_for('new_request') }}"><i class="fas fa-file-alt"></i> ยื่นคำขอใหม่</a>
+                {% endif %}
+
+                <div class="sidebar-footer">
+                    <a href="/logout" class="logout-btn"><i class="fas fa-sign-out-alt"></i> ออกจากระบบ</a>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="user-profile">
+                    ยื่นอุทธรณ์สำหรับคำขอ: <strong>{{ req.id }}</strong> 
+                </div>
+            </header>
+            
+            <section class="content-area">
+                <div class="form-container">
+                    <div class="form-header">
+                        <h2><i class="fas fa-gavel"></i> แบบฟอร์มขออุทธรณ์ผลการพิจารณา</h2>
+                        <p>โปรดระบุเหตุผลและหลักฐานเพิ่มเติมเพื่อประกอบการพิจารณาใหม่</p>
+                    </div>
+                    <hr style="margin-bottom: 25px; border: 0; border-top: 1px solid #eee;">
+
+                    <div class="info-box" style="margin-bottom: 20px;">
+                        <p><strong>หัวข้อผลงาน:</strong> {{ req.title }}</p>
+                        <p><strong>ผลการพิจารณาเดิม:</strong> <span style="color: #dc3545;">{{ req.status }}</span></p>
+                        {% if req.comment %}
+                        <p><strong>ความเห็นจากกรรมการ:</strong> {{ req.comment }}</p>
+                        {% endif %}
+                    </div>
+
+                    <form method="POST">
+                        <div class="form-group">
+                            <label>เหตุผลในการขออุทธรณ์</label>
+                            <textarea name="reason" rows="5" required placeholder="อธิบายเหตุผลที่ท่านต้องการขอให้มีการพิจารณาใหม่..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>ลิงค์หลักฐานเพิ่มเติม (ถ้ามี)</label>
+                            <input type="text" name="evidence_link" placeholder="http://example.com/new-evidence">
+                        </div>
+
+                        <div class="form-actions" style="margin-top: 30px;">
+                            <a href="{{ url_for('view_request', req_id=req.id) }}" class="btn-secondary" style="text-decoration: none; text-align: center;">
+                                <i class="fas fa-arrow-left"></i> ยกเลิก
+                            </a>
+                            <button type="submit" class="btn-primary">
+                                <i class="fas fa-paper-plane"></i> ส่งคำขออุทธรณ์
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
