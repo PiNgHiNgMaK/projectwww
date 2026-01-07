@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>เข้าสู่ระบบ - ระบบค่าตอบแทนทางวิชาการ</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="login-page">
+    <div class="login-container">
+        <h2>เข้าสู่ระบบ</h2>
+        <form method="POST">
+            <input type="text" name="username" placeholder="ชื่อผู้ใช้" required>
+            <input type="password" name="password" placeholder="รหัสผ่าน" required>
+            <button type="submit">Login</button>
+        </form>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <p class="error">{{ messages[0] }}</p>
+          {% endif %}
+        {% endwith %}
+    </div>
+</body>
+</html>

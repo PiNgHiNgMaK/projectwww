@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ระบบค่าตอบแทน - {{ name }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="dashboard-wrapper">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h3>Academic Sys</h3>
+                <p class="role-badge">{{ role.upper() }}</p>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="{{ url_for('dashboard') }}" class="active"><i class="fas fa-home"></i> หน้าหลัก</a>
+
+                {% if role == 'applicant' %}
+                <a href="{{ url_for('new_request') }}"><i class="fas fa-file-alt"></i> ยื่นคำขอใหม่</a>
+                <a href="#"><i class="fas fa-gavel"></i> ยื่นอุทธรณ์</a>
+                {% elif role == 'administration' %}
+                <a href="#"><i class="fas fa-clipboard-check"></i> ตรวจสอบความครบถ้วน</a>
+                {% elif role == 'research' %}
+                <a href="#"><i class="fas fa-search"></i> ตรวจสอบผลงานซ้ำ</a>
+                {% elif role == 'committee' %}
+                <a href="#"><i class="fas fa-user-check"></i> พิจารณาคำขอ</a>
+                {% elif role == 'admin' %}
+                <a href="{{ url_for('manage_system') }}"><i class="fas fa-cogs"></i> ตั้งค่าระบบ</a>
+                {% endif %}
+
+                <div class="sidebar-footer">
+                    <a href="/logout" class="logout-btn"><i class="fas fa-sign-out-alt"></i> ออกจากระบบ</a>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="user-profile">
+                    <i class="fas fa-user-circle"></i> ยินดีต้อนรับคุณ <strong>{{ name }}</strong> [{{ role }}]
+                </div>
+            </header>
+
+            <section class="content-area">
+                <div class="welcome-banner">
+                    <h2>รายการคำขอในระบบ</h2>
+                    <p>จัดการข้อมูลและติดตามสถานะคำขอของคุณได้ที่นี่</p>
+                    <div class="search-box" style="margin-top: 15px;">
+                        <input type="text" id="searchInput" onkeyup="searchTable()"
+                            placeholder="ค้นหาคำขอ (ID, ชื่อ, สถานะ)..."
+                            style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                    </div>
+                </div>
+
+                <script>
+                    function searchTable() {
+                        var input, filter, table, tr, td, i, txtValue;
+                        input = document.getElementById("searchInput");
+                        filter = input.value.toUpperCase();
+                        table = document.querySelector(".styled-table");
+                        tr = table.getElementsByTagName("tr");
+                        for (i = 1; i < tr.length; i++) {
+                            // Search in all columns
+                            var found = false;
+                            for (var j = 0; j < tr[i].getElementsByTagName("td").length; j++) {
+                                td = tr[i].getElementsByTagName("td")[j];
+                                if (td) {
+                                    txtValue = td.textContent || td.innerText;
+                                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                        found = true;
+                                        break;
+                                    }
+                                }
+                            }
+                            tr[i].style.display = found ? "" : "none";
+                        }
+                    }
+                </script>
+
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-info">{{ message }}</div>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+
+                <div class="table-container">
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>หัวข้อ</th>
+                                <th>วันที่</th>
+                                <th>สถานะ</th>
+                                <th>จัดการ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for req in requests %}
+                            <tr>
+                                <td>{{ req.id }}</td>
+                                <td>{{ req.title }}</td>
+                                <td>{{ req.date }}</td>
+                                <td>
+                                    <span class="status-tag status-{{ req.status }}">
+                                        {{ req.status }}
+                                    </span>
+                                </td>
+                                <td>
+                                    {% if role == 'administration' and req.status in ['ส่งแล้ว', 'ผลงานถูกต้อง',
+                                    'ผลงานซ้ำซ้อน'] %}
+                                    <button onclick="openVerifyModal('{{ req.id }}')" class="btn-warning"
+                                        style="margin-right: 5px;">
+                                        <i class="fas fa-clipboard-check"></i> ตรวจสอบ
+                                    </button>
+                                    {% endif %}
+                                    <a href="{{ url_for('view_request', req_id=req.id) }}" class="btn-view">
+                                        <i class="fas {{ 'fa-edit' if req.status == 'แบบร่าง' else 'fa-eye' }}"></i>
+                                        {{ 'แก้ไข' if req.status == 'แบบร่าง' else 'ดูรายละเอียด' }}
+                                    </a>
+                                </td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td colspan="5" style="text-align: center; padding: 30px;">
+                                    <i class="fas fa-folder-open"
+                                        style="font-size: 2rem; color: #ddd; display: block; margin-bottom: 10px;"></i>
+                                    ไม่พบข้อมูลที่แสดงผลได้ในขณะนี้
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Verification Modal -->
+                <div id="verifyModal" class="modal"
+                    style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000;">
+                    <div
+                        style="background: white; width: 600px; margin: 50px auto; padding: 25px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+                        <div
+                            style="display: flex; justify-content: space-between; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 20px;">
+                            <h3 style="margin: 0;"><i class="fas fa-clipboard-check"></i> ตรวจสอบความครบถ้วน</h3>
+                            <button onclick="closeVerifyModal()"
+                                style="border: none; background: none; font-size: 20px; cursor: pointer;">&times;</button>
+                        </div>
+
+                        <div id="modalContent" style="margin-bottom: 20px;">
+                            <p>กำลังโหลดข้อมูล...</p>
+                        </div>
+
+                        <form id="verifyForm" method="POST" action="">
+                            <div id="verifyActions">
+                                <!-- Actions will be injected via JS or generic form -->
+                                <div class="form-group">
+                                    <label>หมายเหตุ / สิ่งที่ต้องแก้ไข</label>
+                                    <input type="text" name="comment" id="verifyComment" placeholder="ระบุเหตุผล..."
+                                        style="width: 100%; padding: 8px; margin-bottom: 10px;">
+                                </div>
+                                <div style="display: flex; gap: 10px;">
+                                    <button type="submit" name="action" value="return" class="btn-warning"
+                                        style="flex: 1;">ส่งคืนแก้ไข</button>
+                                    <button type="submit" name="action" value="pass" class="btn-success"
+                                        style="flex: 1;">ข้อมูลครบถ้วน (ส่งต่อ)</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <script>
+                    function openVerifyModal(reqId) {
+                        document.getElementById('verifyModal').style.display = 'block';
+                        document.getElementById('verifyForm').action = "/view_request/" + reqId; // Post to view_request handler
+
+                        // In a real app, we'd fetch details via AJAX. 
+                        // For now, let's just show the ID and basic instruction
+                        document.getElementById('modalContent').innerHTML = `
+                            <p><strong>Request ID:</strong> ${reqId}</p>
+                            <p>กรุณาตรวจสอบเอกสารแนบและข้อมูลเบื้องต้น</p>
+                            <div class="alert alert-info">ท่านสามารถกด "ดูรายละเอียด" เพื่อดูข้อมูลฉบับเต็ม</div>
+                        `;
+                    }
+
+                    function closeVerifyModal() {
+                        document.getElementById('verifyModal').style.display = 'none';
+                    }
+                </script>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>
