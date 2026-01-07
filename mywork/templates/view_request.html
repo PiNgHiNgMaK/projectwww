@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รายละเอียดคำขอ - {{ req.id }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="dashboard-wrapper">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h3>Academic Sys</h3>
+                <p class="role-badge">{{ role.upper() }}</p>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="{{ url_for('dashboard') }}"><i class="fas fa-home"></i> หน้าหลัก</a>
+
+                {% if role == 'applicant' %}
+                <a href="{{ url_for('new_request') }}"><i class="fas fa-file-alt"></i> ยื่นคำขอใหม่</a>
+                {% endif %}
+
+                <div class="sidebar-footer">
+                    <a href="/logout" class="logout-btn"><i class="fas fa-sign-out-alt"></i> ออกจากระบบ</a>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="user-profile">
+                    ID คำขอ: <strong>{{ req.id }}</strong>
+                    <span class="status-tag status-{{ req.status }}" style="margin-left: 10px;">{{ req.status }}</span>
+                </div>
+            </header>
+
+            <section class="content-area">
+                <div class="form-container">
+                    <div class="form-header">
+                        <h2><i class="fas fa-file-invoice"></i> รายละเอียดข้อมูลคำขอ</h2>
+                        <p>ยื่นเมื่อวันที่: {{ req.date }}</p>
+                    </div>
+                    <hr style="margin-bottom: 25px; border: 0; border-top: 1px solid #eee;">
+
+                    <form method="POST">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p><strong>ประเภทตำแหน่ง:</strong> {{ req.applicant_info.academic_position }}</p>
+                                <p><strong>สังกัด:</strong> {{ req.applicant_info.department }} / {{
+                                    req.applicant_info.faculty }}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p><strong>ปีงบประมาณที่ขอรับ:</strong> {{ req.fiscal_year }}</p>
+                                <p><strong>จำนวนผลงาน:</strong> {{ req.works|length }} รายการ</p>
+                            </div>
+                        </div>
+                        <hr>
+
+                        <form method="POST">
+                            <h3>รายการผลงานทางวิชาการ</h3>
+                            {% for work in req.works %}
+                            <div class="work-card"
+                                style="border:1px solid #ddd; padding:15px; margin-bottom:15px; border-radius:5px; background: #fafafa;">
+                                <h4>{{ work.details.title }} <small class="text-muted">({{ work.type }})</small></h4>
+
+                                <div style="margin-left: 20px; font-size: 0.9em;">
+                                    {% for key, value in work.details.items() %}
+                                    {% if key != 'title' %}
+                                    <p><strong>{{ key|replace('_', ' ')|capitalize }}:</strong> {{ value }}</p>
+                                    {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            {% endfor %}
+
+                            <div class="form-group">
+                                <label>คะแนนรวม (ประเมินตนเอง)</label>
+                                <input type="text" value="{{ req.score }} คะแนน" readonly
+                                    style="font-weight: bold; color: #2ecc71;">
+                            </div>
+
+                            {% if req.status in ['แบบร่าง'] and role == 'applicant' %}
+                            <div class="alert alert-info">
+                                <i class="fas fa-edit"></i> ท่านสามารถกลับไปแก้ไขแบบร่างได้ที่เมนู "ยื่นคำขอใหม่"
+                                โดยระบบจะโหลดข้อมูลเดิมให้ (Feature coming soon - for now please start fresh or edit
+                                manually if implemented)
+                                <!-- Note: True draft editing would require populating new_request form. For now, we allow saving simple edits or just submitting. -->
+                            </div>
+                            {% endif %}
+
+                            <div class="form-actions" style="margin-top: 30px;">
+                                {% if req.status in ['แบบร่าง', 'แก้ไข'] and role == 'applicant' %}
+                                {% if req.status == 'แก้ไข' %}
+                                <div class="alert alert-danger">
+                                    <strong>สิ่งที่ต้อแก้ไข:</strong> {{ req.comment }}
+                                </div>
+                                {% endif %}
+                                <a href="{{ url_for('new_request', edit_id=req.id) }}" class="btn-secondary"
+                                    style="text-decoration: none; text-align: center; display: inline-block;">
+                                    <i class="fas fa-edit"></i> แก้ไขข้อมูล
+                                </a>
+                                <!--
+                                <button type="submit" name="action" value="draft" class="btn-secondary">
+                                    <i class="fas fa-save"></i> บันทึกการแก้ไข
+                                </button>
+                                -->
+                                <button type="submit" name="action" value="submit" class="btn-primary">
+                                    <i class="fas fa-paper-plane"></i> ยื่นคำขอใหม่
+                                </button>
+                                {% elif req.status == 'ไม่ผ่าน' and role == 'applicant' %}
+                                <div class="info-box error" style="width: 100%; margin-bottom: 15px;">
+                                    <i class="fas fa-times-circle"></i> คำขอของคุณไม่ผ่านการอนุมัติ
+                                    {% if req.comment %}
+                                    <br><strong>เหตุผล:</strong> {{ req.comment }}
+                                    {% endif %}
+                                </div>
+                                <a href="{{ url_for('appeal_request', req_id=req.id) }}" class="btn-warning"
+                                    style="text-decoration: none; text-align: center; flex: 1;">
+                                    <i class="fas fa-gavel"></i> ยื่นอุทธรณ์
+                                </a>
+                                <a href="{{ url_for('dashboard') }}" class="btn-secondary"
+                                    style="text-decoration: none; text-align: center; flex: 1;">
+                                    <i class="fas fa-chevron-left"></i> กลับหน้าหลัก
+                                </a>
+                                {% elif req.status in ['ส่งแล้ว', 'ผลงานถูกต้อง', 'ผลงานซ้ำซ้อน'] and role ==
+                                'administration' %}
+                                <div class="admin-actions"
+                                    style="margin-top: 20px; border-top: 1px solid #ddd; padding-top: 20px;">
+                                    <h3><i class="fas fa-clipboard-check"></i> ส่วนสำหรับเจ้าหน้าที่บริหาร</h3>
+
+                                    {% if req.status == 'ผลงานถูกต้อง' %}
+                                    <div class="alert alert-success">งานวิจัยตรวจสอบแล้ว: <strong>ผลงานถูกต้อง</strong>
+                                        (ไม่ซ้ำซ้อน)</div>
+                                    <button type="submit" name="action" value="to_committee" class="btn-success"
+                                        style="width:100%">
+                                        <i class="fas fa-forward"></i> ส่งต่อคณะกรรมการพิจารณา
+                                    </button>
+                                    {% elif req.status == 'ผลงานซ้ำซ้อน' %}
+                                    <div class="alert alert-danger">งานวิจัยตรวจสอบแล้ว: <strong>ผลงานซ้ำซ้อน</strong>
+                                    </div>
+                                    <input type="text" name="comment"
+                                        placeholder="เหตุผลการปฏิเสธ (เช่น ข้อมูลซ้ำซ้อนตามรายงานงานวิจัย)"
+                                        style="margin-bottom: 10px;">
+                                    <button type="submit" name="action" value="reject" class="btn-danger"
+                                        style="width:100%">
+                                        <i class="fas fa-times-circle"></i> ปฏิเสธ/ยกเลิกคำขอ
+                                    </button>
+                                    {% else %}
+                                    <div class="form-group">
+                                        <label>หมายเหตุ (กรณีส่งคืนแก้ไข)</label>
+                                        <input type="text" name="comment" placeholder="ระบุสิ่งที่ต้องแก้ไข...">
+                                    </div>
+                                    <div class="action-buttons" style="display: flex; gap: 10px;">
+                                        <button type="submit" name="action" value="return" class="btn-warning"
+                                            style="flex:1;">
+                                            <i class="fas fa-reply"></i> ส่งคืนแก้ไข
+                                        </button>
+                                        <button type="submit" name="action" value="pass" class="btn-primary"
+                                            style="flex:1;">
+                                            <i class="fas fa-check-circle"></i> ข้อมูลครบถ้วน (ส่งงานวิจัย)
+                                        </button>
+                                    </div>
+                                    {% endif %}
+                                </div>
+
+                                {% elif req.status == 'รอตรวจสอบผลงาน' and role == 'research' %}
+                                <div class="admin-actions"
+                                    style="margin-top: 20px; border-top: 1px solid #ddd; padding-top: 20px;">
+                                    <h3><i class="fas fa-search"></i> ส่วนสำหรับงานวิจัย</h3>
+                                    <p>กรุณาตรวจสอบว่าผลงานนี้เคยถูกใช้ในการขอค่าตอบแทนแล้วหรือไม่</p>
+                                    <div class="action-buttons" style="display: flex; gap: 10px;">
+                                        <button type="submit" name="action" value="duplicate" class="btn-danger"
+                                            style="flex:1;">
+                                            <i class="fas fa-exclamation-triangle"></i> พบผลงานซ้ำซ้อน
+                                        </button>
+                                        <button type="submit" name="action" value="verify" class="btn-success"
+                                            style="flex:1;">
+                                            <i class="fas fa-check-circle"></i> ผลงานถูกต้อง (ไม่ซ้ำ)
+                                        </button>
+                                    </div>
+                                </div>
+
+                                {% elif req.status in ['รอการพิจารณา', 'รอการอุทธรณ์'] and role == 'committee' %}
+                                <div class="admin-actions"
+                                    style="margin-top: 20px; border-top: 1px solid #ddd; padding-top: 20px;">
+                                    <h3><i class="fas fa-user-check"></i> ส่วนสำหรับคณะกรรมการ</h3>
+
+                                    {% if req.status == 'รอการอุทธรณ์' and req.appeal %}
+                                    <div class="alert alert-warning"
+                                        style="background-color: #fff3cd; color: #856404; border-color: #ffeeba;">
+                                        <h4><i class="fas fa-gavel"></i> ข้อมูลการอุทธรณ์</h4>
+                                        <p><strong>เหตุผล:</strong> {{ req.appeal.reason }}</p>
+                                        <p><strong>หลักฐานเพิ่มเติม:</strong> <a href="{{ req.appeal.evidence }}">{{
+                                                req.appeal.evidence }}</a></p>
+                                        <p><small>ยื่นเมื่อ: {{ req.appeal.date }}</small></p>
+                                    </div>
+                                    {% endif %}
+
+                                    <div class="form-group">
+                                        <label>จำนวนเงินค่าตอบแทนที่อนุมัติ (บาท)</label>
+                                        <input type="number" name="amount" placeholder="0.00">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>ความเห็น (กรณีไม่อนุมัติ)</label>
+                                        <input type="text" name="comment" placeholder="ระบุเหตุผล...">
+                                    </div>
+                                    <div class="action-buttons" style="display: flex; gap: 10px;">
+                                        <button type="submit" name="action" value="reject" class="btn-danger"
+                                            style="flex:1;">
+                                            <i class="fas fa-times"></i> ไม่อนุมัติ
+                                        </button>
+                                        <button type="submit" name="action" value="approve" class="btn-success"
+                                            style="flex:1;">
+                                            <i class="fas fa-check-double"></i> อนุมัติการเบิกจ่าย
+                                        </button>
+                                    </div>
+                                </div>
+                                {% else %}
+                                <div class="info-box success" style="width: 100%; margin-bottom: 15px;">
+                                    <i class="fas fa-lock"></i> รายการนี้กำลังดำเนินการ : <span
+                                        class="status-tag status-{{req.status}}">{{ req.status }}</span>
+                                    {% if req.status == 'รอการอุทธรณ์' %}
+                                    <br><strong>สถานะ:</strong> กำลังอยู่ในระหว่างการพิจารณาคำอุทธรณ์
+                                    {% elif req.status == 'อนุมัติ' %}
+                                    <br><strong>ค่าตอบแทนที่ได้รับ:</strong> {{ req.approved_amount }} บาท
+                                    {% endif %}
+                                </div>
+                                <a href="{{ url_for('dashboard') }}" class="btn-secondary"
+                                    style="text-decoration: none; text-align: center; flex: 1;">
+                                    <i class="fas fa-chevron-left"></i> กลับหน้าหลัก
+                                </a>
+                                {% endif %}
+                            </div>
+                        </form>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>

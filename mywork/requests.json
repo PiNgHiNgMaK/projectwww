@@ -1,0 +1,411 @@
+[
+    {
+        "id": "REQ-20260107114357",
+        "applicant": "user01",
+        "applicant_name": "อาจารย์ สมชาย",
+        "applicant_info": {
+            "title_name": "นาย",
+            "academic_position": "อาจารย์",
+            "position_date": "01/01/2560",
+            "position_number": "12345",
+            "department": "วิทยาการคอมพิวเตอร์",
+            "faculty": "วิทยาศาสตร์"
+        },
+        "fiscal_year": "2568",
+        "works": [],
+        "date": "07/01/2026 11:43",
+        "status": "ส่งแล้ว",
+        "score": 0,
+        "comment": "",
+        "timeline_status": "ontime",
+        "certify": true
+    },
+    {
+        "id": "REQ-20260107114817",
+        "applicant": "user01",
+        "applicant_name": "อาจารย์ สมชาย",
+        "applicant_info": {
+            "title_name": "นาย",
+            "academic_position": "อาจารย์",
+            "position_date": "01/01/2560",
+            "position_number": "12345",
+            "department": "วิทยาการคอมพิวเตอร์",
+            "faculty": "วิทยาศาสตร์"
+        },
+        "fiscal_year": "2569",
+        "works": [
+            {
+                "type": "research",
+                "details": {
+                    "title": "เทส",
+                    "journal_name": "เทสๅ",
+                    "vol": "2068",
+                    "issue": "1",
+                    "month": "2",
+                    "year_pub": "2566",
+                    "date_accept": "1",
+                    "date_publish": "1",
+                    "database": "scopus_q1_q2",
+                    "contribution": "first"
+                },
+                "calculated_score": 0.0,
+                "calculated_weight": 0.0,
+                "net_score": 0,
+                "compensation": 0,
+                "calc_error": true,
+                "calc_message": "ข้อมูลไม่ครบถ้วนหรือไม่ตรงตามเกณฑ์ (Weight หรือ Score เป็น 0)"
+            }
+        ],
+        "date": "07/01/2026 11:48",
+        "status": "ส่งแล้ว",
+        "score": 0,
+        "total_compensation": 0,
+        "comment": "",
+        "timeline_status": "ontime",
+        "certify": true
+    },
+    {
+        "id": "REQ-20260107115027",
+        "applicant": "user01",
+        "applicant_name": "อาจารย์ สมชาย",
+        "applicant_info": {
+            "title_name": "นาย",
+            "academic_position": "อาจารย์",
+            "position_date": "01/01/2560",
+            "position_number": "12345",
+            "department": "วิทยาการคอมพิวเตอร์",
+            "faculty": "วิทยาศาสตร์"
+        },
+        "fiscal_year": "2567",
+        "works": [
+            {
+                "type": "textbook",
+                "details": {
+                    "format": "authored",
+                    "title": "ไม่บอก",
+                    "chapter_details": "ไม่รู้",
+                    "publish_type": "inter",
+                    "date_publish": "1",
+                    "contribution": "first"
+                },
+                "calculated_score": 1.25,
+                "calculated_weight": 1.0,
+                "net_score": 1.25,
+                "compensation": 0,
+                "calc_error": false,
+                "calc_message": ""
+            }
+        ],
+        "date": "07/01/2026 11:50",
+        "status": "ส่งแล้ว",
+        "score": 1.25,
+        "total_compensation": 0,
+        "comment": "",
+        "timeline_status": "ontime",
+        "certify": true
+    },
+    {
+        "id": "REQ-20260107115226",
+        "applicant": "user01",
+        "applicant_name": "อาจารย์ สมชาย",
+        "applicant_info": {
+            "title_name": "นาย",
+            "academic_position": "อาจารย์",
+            "position_date": "01/01/2560",
+            "position_number": "12345",
+            "department": "วิทยาการคอมพิวเตอร์",
+            "faculty": "วิทยาศาสตร์"
+        },
+        "fiscal_year": "2567",
+        "works": [
+            {
+                "type": "social",
+                "details": {
+                    "title": "d",
+                    "dissemination_summary": "d",
+                    "format_doc": true,
+                    "format_evidence": false,
+                    "contribution": "first"
+                },
+                "calculated_score": 0.0,
+                "calculated_weight": 1.0,
+                "net_score": 0,
+                "compensation": 0,
+                "calc_error": true,
+                "calc_message": "ข้อมูลไม่ครบถ้วนหรือไม่ตรงตามเกณฑ์ (Weight หรือ Score เป็น 0)"
+            },
+            {
+                "type": "creative",
+                "details": {
+                    "title": "w",
+                    "creative_type": "visual",
+                    "publish_type": "national_perf",
+                    "evidence_peer": true,
+                    "contribution": "first"
+                },
+                "calculated_score": 0.75,
+                "calculated_weight": 1.0,
+                "net_score": 0.75,
+                "compensation": 0,
+                "calc_error": false,
+                "calc_message": ""
+            }
+        ],
+        "date": "07/01/2026 11:52",
+        "status": "ส่งแล้ว",
+        "score": 0.75,
+        "total_compensation": 0,
+        "comment": "",
+        "timeline_status": "ontime",
+        "certify": true
+    },
+    {
+        "id": "REQ-20260107121005",
+        "applicant": "user01",
+        "applicant_name": "อาจารย์ สมชาย",
+        "applicant_info": {
+            "title_name": "นาย",
+            "academic_position": "อาจารย์",
+            "position_date": "01/01/2560",
+            "position_number": "12345",
+            "department": "วิทยาการคอมพิวเตอร์",
+            "faculty": "วิทยาศาสตร์"
+        },
+        "fiscal_year": "1111",
+        "works": [
+            {
+                "type": "research",
+                "details": {
+                    "title": "test",
+                    "journal_name": "test",
+                    "vol": "1",
+                    "issue": "1",
+                    "month": "1",
+                    "year_pub": "1",
+                    "date_accept": "1",
+                    "date_publish": "1",
+                    "database": "scopus_q1_q2",
+                    "contribution": "first"
+                },
+                "calculated_score": 1.25,
+                "calculated_weight": 1.0,
+                "net_score": 1.25,
+                "calc_error": false,
+                "calc_message": ""
+            }
+        ],
+        "date": "07/01/2026 12:10",
+        "status": "อนุมัติ",
+        "score": 1.25,
+        "total_compensation": 0,
+        "comment": "",
+        "timeline_status": "ontime",
+        "certify": true,
+        "approved_amount": "5000"
+    },
+    {
+        "id": "REQ-20260107121638",
+        "applicant": "user01",
+        "applicant_name": "อาจารย์ สมชาย",
+        "applicant_info": {
+            "title_name": "นาย",
+            "academic_position": "อาจารย์",
+            "position_date": "01/01/2560",
+            "position_number": "12345",
+            "department": "วิทยาการคอมพิวเตอร์",
+            "faculty": "วิทยาศาสตร์"
+        },
+        "fiscal_year": "1",
+        "works": [
+            {
+                "type": "social",
+                "details": {
+                    "contribution": "intellectual",
+                    "database": "A",
+                    "dissemination_summary": "1",
+                    "format_doc": true,
+                    "format_evidence": true,
+                    "title": "1"
+                },
+                "calculated_score": 1.0,
+                "calculated_weight": 0.5,
+                "net_score": 0.5,
+                "calc_error": false,
+                "calc_message": ""
+            }
+        ],
+        "date": "07/01/2026 12:17",
+        "status": "อนุมัติ",
+        "score": 0.5,
+        "total_compensation": 0,
+        "comment": "ไก่",
+        "timeline_status": "ontime",
+        "certify": true,
+        "rejection_date": "07/01/2026",
+        "appeal": {
+            "reason": "เจ้านั้นล่ะไก่",
+            "evidence": "",
+            "date": "07/01/2026 12:18",
+            "status": "รอพิจารณา"
+        },
+        "approved_amount": "1"
+    },
+    {
+        "id": "REQ-20260107122018",
+        "applicant": "user01",
+        "applicant_name": "อาจารย์ สมชาย",
+        "applicant_info": {
+            "title_name": "นาย",
+            "academic_position": "อาจารย์",
+            "position_date": "01/01/2560",
+            "position_number": "12345",
+            "department": "วิทยาการคอมพิวเตอร์",
+            "faculty": "วิทยาศาสตร์"
+        },
+        "fiscal_year": "1",
+        "works": [
+            {
+                "type": "policy",
+                "details": {
+                    "title": "1",
+                    "dissemination_summary": "1",
+                    "publish_type": "presented",
+                    "database": "B",
+                    "contribution": "intellectual"
+                },
+                "calculated_score": 0.75,
+                "calculated_weight": 0.5,
+                "net_score": 0.375,
+                "calc_error": false,
+                "calc_message": ""
+            }
+        ],
+        "date": "07/01/2026 12:20",
+        "status": "ส่งแล้ว",
+        "score": 0.375,
+        "total_compensation": 0,
+        "comment": "",
+        "timeline_status": "ontime",
+        "certify": true
+    },
+    {
+        "id": "REQ-20260107130403",
+        "applicant": "user01",
+        "applicant_name": "อาจารย์ สมชาย",
+        "applicant_info": {
+            "title_name": "นาย",
+            "academic_position": "อาจารย์",
+            "position_date": "01/01/2560",
+            "position_number": "12345",
+            "department": "วิทยาการคอมพิวเตอร์",
+            "faculty": "วิทยาศาสตร์"
+        },
+        "fiscal_year": "2567",
+        "works": [
+            {
+                "type": "innovation",
+                "details": {
+                    "title": "2",
+                    "dissemination_summary": "2",
+                    "format_career": true,
+                    "format_innovation": true,
+                    "format_other": true,
+                    "type": "report",
+                    "contribution": "first",
+                    "database": "A"
+                },
+                "calculated_score": 1.0,
+                "calculated_weight": 1.0,
+                "net_score": 1.0,
+                "calc_error": false,
+                "calc_message": ""
+            }
+        ],
+        "date": "07/01/2026 13:04",
+        "status": "ส่งแล้ว",
+        "score": 1.0,
+        "total_compensation": 0,
+        "comment": "",
+        "timeline_status": "ontime",
+        "certify": true
+    },
+    {
+        "id": "REQ-20260107135632",
+        "applicant": "user01",
+        "applicant_name": "อาจารย์ สมชาย",
+        "applicant_info": {
+            "title_name": "นาย",
+            "academic_position": "ผศ.",
+            "position_date": "01/01/2560",
+            "position_number": "12345",
+            "department": "วิทยาการคอมพิวเตอร์",
+            "faculty": "วิทยาศาสตร์"
+        },
+        "fiscal_year": "4",
+        "works": [
+            {
+                "type": "research",
+                "details": {
+                    "title": "1",
+                    "journal_name": "1",
+                    "vol": "1",
+                    "issue": "1",
+                    "month": "1",
+                    "year_pub": "1",
+                    "date_accept": "1",
+                    "date_publish": "1",
+                    "database": "scopus_q1_q2",
+                    "contribution": "first"
+                },
+                "calculated_score": 1.25,
+                "calculated_weight": 1.0,
+                "net_score": 1.25,
+                "calc_error": false,
+                "calc_message": ""
+            }
+        ],
+        "date": "07/01/2026 13:56",
+        "status": "ส่งแล้ว",
+        "score": 1.25,
+        "total_compensation": 5600,
+        "comment": "",
+        "timeline_status": "ontime",
+        "certify": true
+    },
+    {
+        "id": "REQ-20260107202731",
+        "applicant": "user01",
+        "applicant_name": "อาจารย์ สมชาย",
+        "applicant_info": {
+            "title_name": "นาย",
+            "academic_position": "รศ.",
+            "position_date": "01/01/2560",
+            "position_number": "12345",
+            "department": "วิทยาการคอมพิวเตอร์",
+            "faculty": "วิทยาศาสตร์"
+        },
+        "fiscal_year": "2",
+        "works": [
+            {
+                "type": "teaching",
+                "details": {
+                    "database": "B",
+                    "contribution": "intellectual",
+                    "title": "g"
+                },
+                "calculated_score": 0.75,
+                "calculated_weight": 0.5,
+                "net_score": 0.375,
+                "calc_error": false,
+                "calc_message": ""
+            }
+        ],
+        "date": "07/01/2026 20:27",
+        "status": "ส่งแล้ว",
+        "score": 0.375,
+        "total_compensation": 0,
+        "comment": "",
+        "timeline_status": "ontime",
+        "certify": true
+    }
+]

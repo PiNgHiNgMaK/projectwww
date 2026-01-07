@@ -1,0 +1,309 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Sarabun', sans-serif; /* แนะนำให้ใช้ font ภาษาไทยที่ดูง่าย */
+}
+
+body {
+    background-color: #f0f2f5;
+}
+
+.dashboard-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 260px;
+    background-color: #2c3e50;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    height: 100%;
+}
+
+.sidebar-header {
+    padding: 20px;
+    text-align: center;
+    background-color: #1a252f;
+}
+
+.sidebar-header h3 {
+    margin-bottom: 5px;
+    color: #3498db;
+}
+
+.sidebar-nav {
+    padding: 10px 0;
+    flex: 1;
+}
+
+.sidebar-nav a {
+    display: block;
+    padding: 15px 25px;
+    color: #bdc3c7;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 0.95rem;
+}
+
+.sidebar-nav a i {
+    margin-right: 10px;
+    width: 20px;
+}
+
+.sidebar-nav a:hover, .sidebar-nav a.active {
+    background-color: #34495e;
+    color: white;
+    border-left: 4px solid #3498db;
+}
+
+.sidebar-nav hr {
+    border: 0;
+    border-top: 1px solid #3e4f5f;
+    margin: 10px 0;
+}
+
+.logout-btn {
+    color: #e74c3c !important;
+    margin-top: auto;
+}
+
+/* Main Content Styles */
+.main-content {
+    flex: 1;
+    margin-left: 260px; /* เว้นที่ให้ Sidebar */
+    display: flex;
+    flex-direction: column;
+}
+
+.top-bar {
+    background-color: white;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 30px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.content-area {
+    padding: 30px;
+}
+
+.welcome-card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+/* สำหรับหน้า Login (แถมให้) */
+.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #2c3e50, #3498db);
+}
+
+.login-container {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    width: 350px;
+    text-align: center;
+}
+
+.login-container input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.login-container button {
+    width: 100%;
+    padding: 12px;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.error { color: red; font-size: 0.8rem; margin-top: 10px; }
+
+/* Table Styles */
+.table-container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.styled-table th, .styled-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.styled-table th {
+    background-color: #f8f9fa;
+    color: var(--primary-color);
+}
+
+.status-tag {
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.status-tag.submitted { background: #d4edda; color: #155724; }
+.status-tag.draft { background: #fff3cd; color: #856404; }
+
+/* Form Styles */
+.form-container {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 700px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.form-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.btn-primary {
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-secondary {
+    background: #95a5a6;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* เพิ่มเติมหรือแก้ไขส่วน status-tag ในไฟล์เดิม */
+.status-tag {
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    display: inline-block;
+}
+
+/* สีสถานะส่งแล้ว */
+.status-tag.status-ส่งแล้ว {
+    background-color: #d1e7dd;
+    color: #0f5132;
+    border: 1px solid #badbcc;
+}
+
+/* สีสถานะแบบร่าง */
+.status-tag.status-แบบร่าง {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeb1;
+}
+
+.btn-primary {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-primary:hover {
+    background: #2980b9;
+}
+
+.btn-secondary {
+    background: #95a5a6;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-secondary:hover {
+    background: #7f8c8d;
+}
+
+.btn-view {
+    text-decoration: none;
+    background-color: #f1f3f5;
+    color: #495057;
+    padding: 5px 12px;
+    border-radius: 5px;
+    font-size: 0.85rem;
+    border: 1px solid #dee2e6;
+    transition: 0.2s;
+}
+
+.btn-view:hover {
+    background-color: #e9ecef;
+    color: var(--accent-color);
+}
+
+.info-box.success {
+    background-color: #d1e7dd;
+    color: #0f5132;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #badbcc;
+}
+
+input[readonly], select[disabled] {
+    background-color: #e9ecef;
+    cursor: not-allowed;
+}

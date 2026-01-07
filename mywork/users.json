@@ -1,0 +1,38 @@
+[
+    {
+        "username": "user01",
+        "password": "123",
+        "role": "applicant",
+        "name": "อาจารย์ สมชาย",
+        "title_name": "นาย",
+        "academic_position": "อาจารย์",
+        "position_date": "01/01/2560",
+        "position_number": "12345",
+        "department": "วิทยาการคอมพิวเตอร์",
+        "faculty": "วิทยาศาสตร์"
+    },
+    {
+        "username": "admin_work",
+        "password": "123",
+        "role": "administration",
+        "name": "เจ้าหน้าที่งานบริหาร"
+    },
+    {
+        "username": "research01",
+        "password": "123",
+        "role": "research",
+        "name": "เจ้าหน้าที่งานวิจัย"
+    },
+    {
+        "username": "board01",
+        "password": "123",
+        "role": "committee",
+        "name": "กรรมการคณะ"
+    },
+    {
+        "username": "root",
+        "password": "123",
+        "role": "admin",
+        "name": "ผู้ดูแลระบบ"
+    }
+]
