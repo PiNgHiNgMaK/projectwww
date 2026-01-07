@@ -1,5 +1,5 @@
 
-
+กฟไไไไไไไไไไไไไไไไไไไไไไไไไไไไ
 @app.route('/')
 def index():
     if 'username' in session: return redirect(url_for('dashboard'))
