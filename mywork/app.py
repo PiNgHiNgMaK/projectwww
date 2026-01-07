@@ -49,10 +49,7 @@ def calculate_work_score(work_type, work_level, role):
     work_level = clean(work_level)
     role = clean(role)
 
-    # 2. Determine Weight (W) - ตามข้อ 6
-    # Group 1 (Weight 1.0): First, Corresponding, Main
-    # Group 2 (Weight 0.5): Essential Intellectual, Co-author
-    
+
     weight = 0.0
     # Map from frontend values or Thai text
     if role in ['first', 'corresponding', 'main', 'แรก', 'บรรณกิจ', 'หลัก']:
